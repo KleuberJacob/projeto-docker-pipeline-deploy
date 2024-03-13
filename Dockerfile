@@ -1,4 +1,5 @@
-FROM openjdk:17
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} api-basica.jar
-ENTRYPOINT ["java", "-jar", "/api-basica.jar"]
+FROM eclipse-temurin:17-jdk-alpine
+WORKDIR /app
+COPY target/api-basica-1.0.0.jar api-basica-1.0.0.jar
+EXPOSE 8080
+CMD ["java", "-jar", "api-basica-1.0.0.jar"]
