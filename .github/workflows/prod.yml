@@ -25,13 +25,13 @@ jobs:
       - name: Push image docker
         run: docker push kleuberjacob/api-basica
 
-#  deploy:
-#    needs: build
-#    runs-on: self-hosted
-#    steps:
-#      - name: Pull image from docker hub
-#        run: docker pull KleuberJacob/api-basica:latest
-#      - name: Remove docker container
-#        run: docker rm -f api-basica
-#      - name: Run docker container
-#        run: docker run -d -p 8080:8080 -e DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}} -e DATABASE_PASSWORD='${{secrets.DATABASE_PASSWORD}}' -e DATABASE_URL=${{secrets.DATABASE_URL}} --name deploy_ghactions danieleleaoe/deploy_ghactions
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull kleuberjacob/api-basica:latest
+      - name: Remove docker container
+        run: docker rm -f api-basica
+      - name: Run docker container
+        run: docker run -d -p 8080:8080 -e DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}} -e DATABASE_PASSWORD='${{secrets.DATABASE_PASSWORD}}' -e DATABASE_URL=${{secrets.DATABASE_URL}} --name api-basica kleuberjacob/api-basica
