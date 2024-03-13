@@ -21,9 +21,9 @@ jobs:
       - name: Login Docker Hub
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
       - name: Build docker image
-        run: docker build -t KleuberJacob/api-basica .
+        run: docker build -t kleuberjacob/api-basica .
       - name: Push image docker
-        run: docker push KleuberJacob/api-basica
+        run: docker push kleuberjacob/api-basica
 
 #  deploy:
 #    needs: build
