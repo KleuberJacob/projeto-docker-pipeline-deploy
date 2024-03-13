@@ -1,26 +1,27 @@
 name: Deploy Application Crud
 
 on:
-    push:
-        branches: [main]
+  push:
+      branches: [main]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Checkout code
-            uses: actions/checkout@v3
+  build:
 
-          - name: Setup Java
-            uses: actions/setup-java@v3
-            with:
-              distribution: 'temurin'
-              java-version: '17'
-          - name: Build project
-            run: mvn clean install -DskipTests
-          - name: Login Docker hub
-            run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-          - name: Build docker image
-            run: docker build -t KleuberJacob/api-basica .
-          - name: Push image docker
-            run: docker push KleuberJacob/api-basica
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    - name: Build project
+      run: mvn clean install -DskipTests
+    - name: Login Docker hub
+      run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+    - name: Build docker image
+      run: docker build -t KleuberJacob/api-basica .
+    - name: Push image docker
+      run: docker push KleuberJacob/api-basica
